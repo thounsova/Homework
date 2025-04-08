@@ -1,171 +1,103 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import image1 from "../../assets/images1.webp";
-import image2 from "../../assets/images2.webp";
-import image3 from "../../assets/images3.webp";
-import image4 from "../../assets/images4.webp";
-import image5 from "../../assets/images5.webp";
-import image6 from "../../assets/images6.webp";
-import image7 from "../../assets/images7.webp";
-import image8 from "../../assets/images8.webp";
-import image9 from "../../assets/images9.webp";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-interface CardProps {
-  title: string;
+interface ProductCardProps {
+  name: string;
+  price: string;
   description: string;
   image: string;
   alt: string;
   link?: string;
 }
 
-function CardComponent({ title, description, image, alt, link }: CardProps) {
+function ProductCard({
+  name,
+  price,
+  description,
+  image,
+  alt,
+  link,
+}: ProductCardProps) {
   return (
     <Link
       to={link || "#"}
-      className="max-w-[260px] bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl gap-4 block"
+      className="w-full bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all transform hover:scale-105 duration-300 ease-in-out"
     >
-      <div className="relative">
+      <div className="relative overflow-hidden rounded-t-3xl">
         <img
           src={image}
           alt={alt}
-          className="w-full hover:border-blue-300 h-[210px] object-cover rounded-t-lg border-4 border-transparent transition-all hover:border-white"
+          className="w-full h-60 object-fit transition-transform duration-500 ease-in-out hover:scale-110 rounded-t-3xl"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black opacity-40 rounded-t-lg"></div>
+        <button className="absolute top-3 right-3 p-2 bg-white text-pink-400 rounded-full shadow-lg hover:bg-pink-100 hover:text-pink-500 transition">
+          <i className="fas fa-heart"></i>
+        </button>
       </div>
       <div className="p-4">
-        <div className="flex items-center justify-between mb-2">
-          <h2 className="text-lg font-semibold text-white">{title}</h2>
-          <button className="flex items-center justify-center p-2 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full shadow-lg hover:scale-105 transition-all hover:bg-blue-600">
-            <div className="px-2 py-2 rounded-full flex items-center justify-center transition-all">
-              <svg
-                className="w-5 h-5 text-white drop-shadow-sm hover:text-red-600"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
-              </svg>
-            </div>
+        <h2 className="text-md font-semibold text-pink-700 truncate">{name}</h2>
+        <p className="text-sm text-gray-600 mb-2 line-clamp-2">{description}</p>
+        <div className="flex items-center justify-between">
+          <span className="text-pink-600 font-bold text-sm">${price}</span>
+          <button className="text-xs px-4 py-2 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition">
+            Add to Cart
           </button>
         </div>
-        <p className="text-sm text-gray-300">{description}</p>
       </div>
     </Link>
   );
 }
 
 export default function Card() {
-  const cardData = [
-    {
-      title: "Card 1 Title",
-      description:
-        "Parents, join your little ones in exploring this beautiful world of folklore and adventure. With interactive elements and shared reading modes, create lasting memories as you guide their journey through enchanting tales.",
-      image: image1,
-      alt: "Card 1 Image",
-      link: "/",
-    },
-    {
-      title: "Card 2 Title",
-      description:
-        "Parents, join your little ones in exploring this beautiful world of folklore and adventure. With interactive elements and shared reading modes, create lasting memories as you guide their journey through enchanting tales.",
-      image: image2,
-      alt: "Card 2 Image",
-      link: "/story/2",
-    },
-    {
-      title: "Card 3 Title",
-      description:
-        "Parents, join your little ones in exploring this beautiful world of folklore and adventure. With interactive elements and shared reading modes, create lasting memories as you guide their journey through enchanting tales.",
-      image: image3,
-      alt: "Card 3 Image",
-      link: "/story/3",
-    },
-    {
-      title: "Card 4 Title",
-      description:
-        "Parents, join your little ones in exploring this beautiful world of folklore and adventure. With interactive elements and shared reading modes, create lasting memories as you guide their journey through enchanting tales.",
-      image: image4,
-      alt: "Card 4 Image",
-      link: "/story/4",
-    },
-    {
-      title: "Card 5 Title",
-      description:
-        "Parents, join your little ones in exploring this beautiful world of folklore and adventure. With interactive elements and shared reading modes, create lasting memories as you guide their journey through enchanting tales.",
-      image: image5,
-      alt: "Card 5 Image",
-      link: "/story/5",
-    },
-    {
-      title: "Card 6 Title",
-      description:
-        "Parents, join your little ones in exploring this beautiful world of folklore and adventure. With interactive elements and shared reading modes, create lasting memories as you guide their journey through enchanting tales.",
-      image: image6,
-      alt: "Card 6 Image",
-      link: "/story/6",
-    },
-    {
-      title: "Card 7 Title",
-      description:
-        "Parents, join your little ones in exploring this beautiful world of folklore and adventure. With interactive elements and shared reading modes, create lasting memories as you guide their journey through enchanting tales.",
-      image: image7,
-      alt: "Card 7 Image",
-      link: "/story/7",
-    },
-    {
-      title: "Card 8 Title",
-      description:
-        "Parents, join your little ones in exploring this beautiful world of folklore and adventure. With interactive elements and shared reading modes, create lasting memories as you guide their journey through enchanting tales.",
-      image: image8,
-      alt: "Card 8 Image",
-      link: "/story/8",
-    },
-    {
-      title: "Card 9 Title",
-      description:
-        "Parents, join your little ones in exploring this beautiful world of folklore and adventure. With interactive elements and shared reading modes, create lasting memories as you guide their journey through enchanting tales.",
-      image: image9,
-      alt: "Card 9 Image",
-      link: "/story/9",
-    },
-    {
-      title: "Card 10 Title",
-      description:
-        "Parents, join your little ones in exploring this beautiful world of folklore and adventure. With interactive elements and shared reading modes, create lasting memories as you guide their journey through enchanting tales.",
-      image: image2,
-      alt: "Card 10 Image",
-      link: "/story/10",
-    },
-    {
-      title: "Card 11 Title",
-      description:
-        "Parents, join your little ones in exploring this beautiful world of folklore and adventure. With interactive elements and shared reading modes, create lasting memories as you guide their journey through enchanting tales.",
-      image: image3,
-      alt: "Card 11 Image",
-      link: "/story/11",
-    },
-    {
-      title: "Card 12 Title",
-      description:
-        "Parents, join your little ones in exploring this beautiful world of folklore and adventure. With interactive elements and shared reading modes, create lasting memories as you guide their journey through enchanting tales.",
-      image: image1,
-      alt: "Card 12 Image",
-      link: "/story/12",
-    },
-  ];
+  const [products, setProducts] = useState<ProductCardProps[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then((res) => res.json())
+      .then((data) => {
+        const formatted = data.map((item: any) => ({
+          name: item.title,
+          price: item.price.toFixed(2),
+          description: item.description,
+          image: item.image,
+          alt: item.title,
+          link: `/product/${item.id}`,
+        }));
+        setProducts(formatted);
+      })
+      .catch((error) => console.error("Error fetching products:", error));
+  }, []);
+
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
-    <div className="flex flex-wrap justify-center gap-7 pt-6 pb-6">
-      {cardData.map((card, index) => (
-        <CardComponent
-          key={index}
-          title={card.title}
-          description={card.description}
-          image={card.image}
-          alt={card.alt}
-          link={card.link}
+    <div className="px-6 md:px-12 pt-8 pb-10 bg-gradient-to-b from-pink-50 to-white min-h-screen">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8">
+        <h1 className="text-3xl font-bold text-pink-700">Cute Shop 🛍️</h1>
+        <input
+          type="text"
+          placeholder="Search something sweet..."
+          className="w-full sm:w-72 px-4 py-2 border border-pink-200 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-pink-300"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
-      ))}
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        {filteredProducts.map((product, index) => (
+          <ProductCard
+            key={index}
+            name={product.name}
+            price={product.price}
+            description={product.description}
+            image={product.image}
+            alt={product.alt}
+            link={product.link}
+          />
+        ))}
+      </div>
     </div>
   );
 }
