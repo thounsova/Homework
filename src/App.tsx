@@ -2,7 +2,6 @@ import "./App.css";
 import { ThemeProvider } from "./App/Ui/ThemeContext";
 import Navbar from "./components/Navbar";
 import Home from "./App/Pages/Home/Home";
-import Footer from "./components/Footer";
 import About from "./App/Pages/Abouts/About";
 import { Routes, Route } from "react-router-dom";
 
@@ -21,7 +20,6 @@ function App() {
           <Route path="/About" element={<About />} />
         </Routes>
       </main>
-      <Footer />
     </ThemeProvider>
   );
 }

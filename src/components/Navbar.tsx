@@ -10,7 +10,7 @@ interface NavItem {
 const NavItems: NavItem[] = [
   { name: "HOME", link: "/" },
   { name: "PRODUCT", link: "/product" },
-  { name: "ABOUT", link: "/about" },
+  { name: "USER", link: "/about" },
 ];
 
 export default function Navbar() {
